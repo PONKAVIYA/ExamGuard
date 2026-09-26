@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20231221123523"
+  },
+  "applications": ["examguard"],
+  "fields": [
+    {
+      "fieldName": "eventType",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "timestamp",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "ProctorEvent",
+  "relationships": [
+    {
+      "otherEntityName": "attempt",
+      "otherEntityRelationshipName": "proctorEvent",
+      "relationshipName": "attempt",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

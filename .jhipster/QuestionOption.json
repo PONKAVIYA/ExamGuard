@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20231221123223"
+  },
+  "applications": ["examguard"],
+  "fields": [
+    {
+      "fieldName": "text",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "orderIndex",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "QuestionOption",
+  "relationships": [
+    {
+      "otherEntityName": "question",
+      "otherEntityRelationshipName": "questionOption",
+      "relationshipName": "question",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}

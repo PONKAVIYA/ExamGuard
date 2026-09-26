@@ -1,0 +1,62 @@
+application {
+  config {
+    baseName examguard
+    applicationType monolith
+    packageName com.examguard
+    authenticationType jwt
+    prodDatabaseType mysql
+    devDatabaseType h2Disk
+    clientFramework no
+    buildTool maven
+  }
+  entities Exam, Question, QuestionOption, Attempt, StudentAnswer, ProctorEvent
+}
+
+entity Exam {
+  title String required
+  durationSeconds Integer required
+  active Boolean
+}
+
+entity Question {
+  text String required
+  correctOptionIndex Integer required
+}
+
+entity QuestionOption {
+  text String required
+  orderIndex Integer required
+}
+
+entity Attempt {
+  startedAt Instant required
+  endedAt Instant required
+  submitted Boolean
+  score Integer
+}
+
+entity StudentAnswer {
+  selectedOptionIndex Integer required
+}
+
+entity ProctorEvent {
+  eventType String required
+  timestamp Instant required
+}
+
+relationship OneToMany {
+  Exam to Question
+  Question to QuestionOption
+  Exam to Attempt
+  Attempt to StudentAnswer
+  Attempt to ProctorEvent
+}
+
+relationship ManyToOne {
+  Attempt{student} to User with builtInEntity
+  StudentAnswer{question} to Question
+}
+
+paginate Question, Attempt with pagination
+
+service Exam, Question, Attempt with serviceImpl

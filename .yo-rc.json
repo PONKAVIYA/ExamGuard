@@ -1,0 +1,20 @@
+{
+  "generator-jhipster": {
+    "applicationType": "monolith",
+    "authenticationType": "jwt",
+    "baseName": "examguard",
+    "buildTool": "maven",
+    "clientFramework": "no",
+    "creationTimestamp": 1703161763127,
+    "devDatabaseType": "h2Disk",
+    "entities": ["Exam", "Question", "QuestionOption", "Attempt", "StudentAnswer", "ProctorEvent"],
+    "jhipsterVersion": "9.4.0",
+    "jwtSecretKey": "MzA3ZjhjMTA4YjA0MzhiOTdjMWNhMWE4NmU5YmQxYzNmZTE4YTg2Yzk3YTE0MTIyZjZjZDgxYjg5YTE3NzUzMGQ2NTkxZDhkNTg1ZmI1ZjFkMmIzNjUwZjI4OWVlYzZjMGNhN2Q4YmZkOTE1OWNlNTBiMzFkMjQzMDIxODVlNGE=",
+    "languages": ["en"],
+    "lastLiquibaseTimestamp": 1703162123000,
+    "nativeLanguage": "en",
+    "packageName": "com.examguard",
+    "prodDatabaseType": "mysql",
+    "skipClient": true
+  }
+}

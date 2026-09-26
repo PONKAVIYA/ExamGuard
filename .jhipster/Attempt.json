@@ -1,0 +1,60 @@
+{
+  "annotations": {
+    "changelogDate": "20231221123323"
+  },
+  "applications": ["examguard"],
+  "fields": [
+    {
+      "fieldName": "startedAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "endedAt",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "submitted",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "score",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Attempt",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "studentAnswer",
+      "otherEntityRelationshipName": "attempt",
+      "relationshipName": "studentAnswer",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "proctorEvent",
+      "otherEntityRelationshipName": "attempt",
+      "relationshipName": "proctorEvent",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "user",
+      "relationshipName": "student",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one",
+      "relationshipWithBuiltInEntity": true
+    },
+    {
+      "otherEntityName": "exam",
+      "otherEntityRelationshipName": "attempt",
+      "relationshipName": "exam",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

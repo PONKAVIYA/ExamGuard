@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20231221123423"
+  },
+  "applications": ["examguard"],
+  "fields": [
+    {
+      "fieldName": "selectedOptionIndex",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "StudentAnswer",
+  "relationships": [
+    {
+      "otherEntityName": "question",
+      "relationshipName": "question",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "attempt",
+      "otherEntityRelationshipName": "studentAnswer",
+      "relationshipName": "attempt",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no"
+}
