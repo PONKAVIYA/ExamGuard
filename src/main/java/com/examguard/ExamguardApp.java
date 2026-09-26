@@ -19,8 +19,11 @@ import org.springframework.boot.liquibase.autoconfigure.LiquibaseProperties;
 import org.springframework.core.env.Environment;
 import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
+@EnableScheduling
 @SpringBootApplication(exclude = { H2ConsoleAutoConfiguration.class })
+
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
 public class ExamguardApp {
 
