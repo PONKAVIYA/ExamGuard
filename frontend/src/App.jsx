@@ -1,122 +1,173 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { useState } from "react";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ExamListPage from "./pages/ExamListPage";
+import ExamTakingPage from "./pages/ExamTakingPage";
+import ResultPage from "./pages/ResultPage";
+import { startExam } from "./api/examApi";
+import { getToken, clearToken } from "./utils/tokenStorage";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [token, setToken] = useState(getToken());
+  const [showRegister, setShowRegister] = useState(false);
+
+  // Current student screen
+  const [currentPage, setCurrentPage] = useState("examList");
+
+  // Current exam attempt
+  const [attempt, setAttempt] = useState(null);
+
+  // Submission result
+  const [result, setResult] = useState(null);
+
+  // General error
+  const [error, setError] = useState("");
+
+  function handleLoginSuccess(newToken) {
+    setToken(newToken);
+    setShowRegister(false);
+    setCurrentPage("examList");
+    setAttempt(null);
+    setResult(null);
+    setError("");
+  }
+
+  function handleLogout() {
+    clearToken();
+
+    setToken(null);
+    setShowRegister(false);
+    setCurrentPage("examList");
+    setAttempt(null);
+    setResult(null);
+    setError("");
+  }
+
+  function handleCreateAccount() {
+    setShowRegister(true);
+  }
+
+  function handleBackToLogin() {
+    setShowRegister(false);
+  }
+
+  // ============================================================
+  // START EXAM
+  // ============================================================
+
+  async function handleStartExam(examId) {
+    setError("");
+
+    try {
+      const startedAttempt = await startExam(examId);
+
+      setAttempt(startedAttempt);
+      setResult(null);
+      setCurrentPage("examList");
+
+      // Small delay so React state updates cleanly
+      setCurrentPage("exam");
+    } catch (err) {
+      setError(
+        err.message || "Unable to start the exam. Please try again."
+      );
+    }
+  }
+
+  // ============================================================
+  // EXAM SUBMITTED
+  // ============================================================
+
+  function handleExamSubmitted(submitResult) {
+    setResult(submitResult);
+    setCurrentPage("result");
+  }
+
+  // ============================================================
+  // BACK TO EXAM LIST
+  // ============================================================
+
+  function handleBackToExams() {
+    setAttempt(null);
+    setResult(null);
+    setError("");
+    setCurrentPage("examList");
+  }
+
+  // ============================================================
+  // NOT LOGGED IN
+  // ============================================================
+
+  if (!token) {
+    if (showRegister) {
+      return (
+        <RegisterPage
+          onBackToLogin={handleBackToLogin}
+        />
+      );
+    }
+
+    return (
+      <LoginPage
+        onLoginSuccess={handleLoginSuccess}
+        onCreateAccount={handleCreateAccount}
+      />
+    );
+  }
+
+  // ============================================================
+  // EXAM TAKING PAGE
+  // ============================================================
+
+  if (currentPage === "exam" && attempt) {
+    return (
+      <ExamTakingPage
+        attempt={attempt}
+        onSubmitted={handleExamSubmitted}
+      />
+    );
+  }
+
+  // ============================================================
+  // RESULT PAGE
+  // ============================================================
+
+  if (currentPage === "result" && result) {
+    return (
+      <ResultPage
+        result={result}
+        onBackToExams={handleBackToExams}
+      />
+    );
+  }
+
+  // ============================================================
+  // EXAM LIST
+  // ============================================================
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
+    <div>
+      {error && (
+        <div
+          style={{
+            background: "#fee2e2",
+            color: "#b91c1c",
+            padding: "1rem",
+            textAlign: "center",
+            fontWeight: "600",
+          }}
         >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          {error}
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      )}
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      <ExamListPage
+        onLogout={handleLogout}
+        onStartExam={handleStartExam}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;

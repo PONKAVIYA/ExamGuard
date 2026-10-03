@@ -1,3 +1,4 @@
+
 package com.examguard.web.rest;
 
 import com.examguard.domain.User;
@@ -72,11 +73,12 @@ public class AccountResource {
     @ResponseStatus(HttpStatus.CREATED)
     public void registerAccount(@Valid @RequestBody ManagedUserVM managedUserVM) {
         LOG.debug("REST request to register account");
+
         if (isPasswordLengthInvalid(managedUserVM.getPassword())) {
             throw new InvalidPasswordException();
         }
-        User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
-        mailService.sendActivationEmail(user);
+
+        userService.registerUser(managedUserVM, managedUserVM.getPassword());
     }
 
     /**
@@ -122,14 +124,19 @@ public class AccountResource {
         String userLogin = SecurityUtils.getCurrentUserLogin().orElseThrow(() ->
             new AccountResourceException("Current user login not found")
         );
+
         Optional<User> existingUser = userRepository.findOneByEmailIgnoreCase(userDTO.getEmail());
+
         if (existingUser.isPresent() && !existingUser.orElseThrow().getLogin().equalsIgnoreCase(userLogin)) {
             throw new EmailAlreadyUsedException();
         }
+
         Optional<User> user = userRepository.findOneByLogin(userLogin);
+
         if (user.isEmpty()) {
             throw new AccountResourceException("User could not be found");
         }
+
         userService.updateUser(
             userDTO.getFirstName(),
             userDTO.getLastName(),
@@ -148,10 +155,15 @@ public class AccountResource {
     @PostMapping(path = "/account/change-password")
     public void changePassword(@RequestBody PasswordChangeDTO passwordChangeDto) {
         LOG.debug("REST request to change password");
+
         if (isPasswordLengthInvalid(passwordChangeDto.getNewPassword())) {
             throw new InvalidPasswordException();
         }
-        userService.changePassword(passwordChangeDto.getCurrentPassword(), passwordChangeDto.getNewPassword());
+
+        userService.changePassword(
+            passwordChangeDto.getCurrentPassword(),
+            passwordChangeDto.getNewPassword()
+        );
     }
 
     /**
@@ -162,7 +174,9 @@ public class AccountResource {
     @PostMapping(path = "/account/reset-password/init")
     public void requestPasswordReset(@RequestBody @Email @Size(min = 5, max = 254) String mail) {
         LOG.debug("REST request to request password reset");
+
         Optional<User> user = userService.requestPasswordReset(mail);
+
         if (user.isPresent()) {
             mailService.sendPasswordResetMail(user.orElseThrow());
         } else {
@@ -184,7 +198,11 @@ public class AccountResource {
         if (isPasswordLengthInvalid(keyAndPassword.getNewPassword())) {
             throw new InvalidPasswordException();
         }
-        Optional<User> user = userService.completePasswordReset(keyAndPassword.getNewPassword(), keyAndPassword.getKey());
+
+        Optional<User> user = userService.completePasswordReset(
+            keyAndPassword.getNewPassword(),
+            keyAndPassword.getKey()
+        );
 
         if (user.isEmpty()) {
             // Dummy hash to prevent reset-key enumeration via response-time timing attack:

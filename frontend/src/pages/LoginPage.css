@@ -1,0 +1,431 @@
+.login-page {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f7faff 0%, #eef4ff 100%);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+/* Background decoration */
+
+.background-shape {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background: rgba(80, 125, 220, 0.09);
+}
+
+.background-shape-top {
+  width: 360px;
+  height: 360px;
+  top: -220px;
+  left: -130px;
+}
+
+.background-shape-bottom {
+  width: 420px;
+  height: 420px;
+  right: -220px;
+  bottom: -240px;
+  background: rgba(80, 125, 220, 0.07);
+}
+
+/* Main */
+
+.login-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Branding */
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 34px;
+}
+
+.shield-logo {
+  width: 76px;
+  height: 86px;
+  flex-shrink: 0;
+}
+
+.shield-logo svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.brand-text {
+  margin-left: 14px;
+}
+
+.brand-text h1 {
+  margin: 0;
+  color: #172c52;
+  font-size: 46px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+
+.brand-text h1 span {
+  color: #2d61d1;
+}
+
+.brand-text p {
+  margin: 9px 0 0;
+  color: #66799b;
+  font-size: 18px;
+  letter-spacing: 0.2px;
+}
+
+/* Login card */
+
+.login-card {
+  width: 100%;
+  min-height: 590px;
+  display: grid;
+  grid-template-columns: 0.82fr 1.4fr;
+  align-items: center;
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(216, 225, 241, 0.9);
+  border-radius: 22px;
+
+  box-shadow:
+    0 24px 70px rgba(31, 61, 112, 0.10),
+    0 4px 14px rgba(31, 61, 112, 0.04);
+
+  padding: 54px 58px;
+}
+
+/* Illustration */
+
+.illustration-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 34px;
+}
+
+.academic-illustration {
+  width: 100%;
+  max-width: 310px;
+  opacity: 0.82;
+}
+
+.academic-illustration svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Login content */
+
+.login-content {
+  width: 100%;
+  max-width: 520px;
+  justify-self: center;
+}
+
+.welcome-section {
+  margin-bottom: 34px;
+}
+
+.welcome-section h2 {
+  margin: 0;
+  color: #142b51;
+  font-size: 38px;
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+}
+
+.welcome-section p {
+  margin: 10px 0 0;
+  color: #647799;
+  font-size: 17px;
+}
+
+/* Form */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-group {
+  margin-bottom: 22px;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 9px;
+  color: #1c3155;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper > svg {
+  position: absolute;
+  left: 17px;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: #7184a4;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.input-wrapper input {
+  width: 100%;
+  height: 58px;
+  box-sizing: border-box;
+
+  padding: 0 18px 0 52px;
+
+  border: 1px solid #cfdaec;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #172c52;
+
+  font-size: 16px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.input-wrapper input::placeholder {
+  color: #9aaac2;
+}
+
+.input-wrapper input:hover {
+  border-color: #b6c5dd;
+}
+
+.input-wrapper input:focus {
+  outline: none;
+  border-color: #3566d2;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(53, 102, 210, 0.10);
+}
+
+/* Error */
+
+.login-error {
+  margin: -4px 0 18px;
+  padding: 11px 14px;
+
+  border: 1px solid #f2c7c7;
+  border-radius: 9px;
+
+  background: #fff5f5;
+  color: #bd3c3c;
+
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Login button */
+
+.login-form button {
+  width: 100%;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
+
+  margin-top: 4px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: linear-gradient(135deg, #2d61d1, #2455c1);
+  color: #ffffff;
+
+  font-size: 17px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(45, 97, 209, 0.18);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.login-form button svg {
+  width: 22px;
+  height: 22px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.login-form button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2859c7, #1f4eb6);
+  transform: translateY(-1px);
+  box-shadow: 0 11px 25px rgba(45, 97, 209, 0.23);
+}
+
+.login-form button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.login-form button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Footer */
+
+.login-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+.login-footer span {
+  height: 1px;
+  flex: 1;
+  background: #dce4f0;
+}
+
+.login-footer p {
+  margin: 0;
+  white-space: nowrap;
+  color: #7184a4;
+  font-size: 13px;
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+  .login-page {
+    padding: 30px 18px;
+  }
+
+  .brand-header {
+    margin-bottom: 26px;
+  }
+
+  .brand-text h1 {
+    font-size: 38px;
+  }
+
+  .brand-text p {
+    font-size: 15px;
+  }
+
+  .shield-logo {
+    width: 62px;
+    height: 70px;
+  }
+
+  .login-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 42px 36px;
+  }
+
+  .illustration-area {
+    display: none;
+  }
+
+  .login-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-page {
+    padding: 20px 14px;
+  }
+
+  .brand-header {
+    margin-bottom: 22px;
+  }
+
+  .shield-logo {
+    width: 50px;
+    height: 58px;
+  }
+
+  .brand-text {
+    margin-left: 8px;
+  }
+
+  .brand-text h1 {
+    font-size: 30px;
+    letter-spacing: -0.8px;
+  }
+
+  .brand-text p {
+    margin-top: 5px;
+    font-size: 12px;
+  }
+
+  .login-card {
+    padding: 32px 22px;
+    border-radius: 16px;
+  }
+
+  .welcome-section {
+    margin-bottom: 28px;
+  }
+
+  .welcome-section h2 {
+    font-size: 30px;
+  }
+
+  .welcome-section p {
+    font-size: 14px;
+  }
+
+  .input-wrapper input {
+    height: 54px;
+    font-size: 15px;
+  }
+
+  .login-form button {
+    height: 54px;
+  }
+}

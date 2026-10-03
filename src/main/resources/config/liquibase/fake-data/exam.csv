@@ -1,31 +1,31 @@
 id;title;duration_seconds;active
-1;pepper toward;15154;false
-2;ethyl;2251;true
-3;reckon make;13516;false
-4;misread aboard;30486;false
-5;acquaintance nucleotidase;3572;false
-6;mmm rationalize;19212;false
-7;swim barring pause;20909;false
-8;excluding crafty;26232;true
-9;meh phooey aha;32384;true
-10;dispense;16528;false
-11;hydrolyse bitter;21883;true
-12;circumference effector;26682;false
-13;gym decision quicker;28276;true
-14;muscat phew bah;6612;false
-15;tousle yum unlike;18273;true
-16;willing oof above;18872;true
-17;boohoo whenever;12046;false
-18;after dishearten toothpick;5525;false
-19;as consequently modulo;7533;false
-20;anti vibration instead;17780;true
-21;fowl yum so;26385;false
-22;unimpressively;15596;true
-23;salty crocodile yum;28752;true
-24;stealthily pish um;12247;false
-25;nimble fooey exactly;5062;false
-26;severe zowie why;17641;true
-27;failing;26978;true
-28;quick-witted;21703;false
-29;thrifty unaccountably psst;22520;false
-30;whenever;1333;true
+1;Java Programming Assessment;300;false
+2;Python Programming Test;2251;true
+3;JavaScript Fundamentals;13516;false
+4;C Programming Assessment;30486;false
+5;Data Structures and Algorithms;3572;false
+6;Object Oriented Programming;19212;false
+7;Web Development Fundamentals;20909;true
+8;Database Programming;26232;true
+9;Software Testing Assessment;32384;true
+10;C++ Programming Test;16528;false
+11;Python Data Structures;21883;true
+12;Computer Programming Basics;26682;false
+13;Advanced Java Programming;28276;true
+14;HTML and CSS Assessment;6612;false
+15;SQL Programming Test;18872;true
+16;TypeScript Fundamentals;18872;true
+17;React Programming Assessment;12046;false
+18;Node.js Programming Test;5525;false
+19;Git and Version Control;7533;false
+20;Algorithms and Problem Solving;17780;true
+21;Java Exception Handling;26385;false
+22;Programming Logic Assessment;15596;true
+23;Python Programming Fundamentals;28752;true
+24;API Testing Assessment;12247;false
+25;Object Oriented Java Test;5062;false
+26;Machine Learning Fundamentals;17641;true
+27;Data Science Programming;26978;true
+28;Computer Networks Assessment;21703;false
+29;Operating Systems Programming;22520;false
+30;Full Stack Development Test;1333;true
