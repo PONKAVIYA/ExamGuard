@@ -154,12 +154,7 @@ function ExamListPage({ onLogout, onStartExam }) {
                     <div className="exam-details">
                       <span>📝 Online Assessment</span>
 
-                      <span>
-                        ⏱️{" "}
-                        {formatDuration(
-                          exam.durationSeconds
-                        )}
-                      </span>
+                      
                     </div>
                   </div>
 
